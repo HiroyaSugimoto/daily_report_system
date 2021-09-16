@@ -17,8 +17,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-// 従業員データのDTOモデル
-
+/**
+ * 従業員データのDTOモデル
+ *
+ */
 @Table(name = JpaConst.TABLE_EMP)
 @NamedQueries({
     @NamedQuery(
@@ -42,37 +44,54 @@ import lombok.Setter;
 @Entity
 public class Employee {
 
-    // id
+    /**
+     * id
+     */
     @Id
     @Column(name = JpaConst.EMP_COL_ID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // 社員番号
-    @Column(name = JpaConst.EMP_COL_NAME, nullable = false, unique = true)
+    /**
+     * 社員番号
+     */
+    @Column(name = JpaConst.EMP_COL_CODE, nullable = false, unique = true)
     private String code;
 
-    // 氏名
+    /**
+     * 氏名
+     */
     @Column(name = JpaConst.EMP_COL_NAME, nullable = false)
     private String name;
 
-    // パスワード
+    /**
+     * パスワード
+     */
     @Column(name = JpaConst.EMP_COL_PASS, length = 64, nullable = false)
     private String password;
 
-    // 管理者権限があるかどうか(一般:0、管理者:1)
+    /**
+     * 管理者権限があるかどうか（一般：0、管理者：1）
+     */
     @Column(name = JpaConst.EMP_COL_ADMIN_FLAG, nullable = false)
     private Integer adminFlag;
 
-    // 登録日時
+    /**
+     *登録日時
+     */
     @Column(name = JpaConst.EMP_COL_CREATED_AT, nullable = false)
     private LocalDateTime createdAt;
 
-    // 更新日時
+    /**
+     * 更新日時
+     */
     @Column(name = JpaConst.EMP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
 
-    // 削除された従業員かどうか(現役:0、削除済み:1)
+    /**
+     * 削除された従業員かどうか（現役：0、削除済み：1）
+     */
     @Column(name = JpaConst.EMP_COL_DELETE_FLAG, nullable = false)
     private Integer deleteFlag;
+
 }
