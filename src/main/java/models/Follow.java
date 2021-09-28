@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import constants.JpaConst;
@@ -21,6 +23,11 @@ import lombok.Setter;
  *
  */
 @Table(name = JpaConst.TABLE_FOL)
+@NamedQueries({
+    @NamedQuery(
+            name = JpaConst.Q_FOL_GET_ALL_FOLLOW_MINE,
+            query = JpaConst.Q_FOL_GET_ALL_FOLLOW_MINE_DEF)
+            })
 
 @Getter
 @Setter
@@ -54,6 +61,6 @@ public class Follow {
     /**
      * フォローを行った日時
      */
-    @Column(name = JpaConst.FOL_COL_CREATED_AT, nullable = false)
-    private LocalDateTime createdAt;
+    @Column(name = JpaConst.FOL_COL_FOLLOWED_AT, nullable = false)
+    private LocalDateTime followedAt;
 }
