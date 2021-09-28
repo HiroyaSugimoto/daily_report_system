@@ -85,6 +85,9 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
 
     //指定した従業員がフォロー中の従業員を全件idの降順で取得する
-    String Q_FOL_GET_ALL_FOLLOW_MINE = ENTITY_EMP + ".getAllFollowMine";
-    String Q_FOL_GET_ALL_FOLLOW_MINE_DEF = "SELECT f FROM Follow AS f WHERE f.followee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY f.id DESC";
+    String Q_FOL_GET_ALL_FOLLOWEE_MINE = ENTITY_EMP + ".getAllFolloweeMine";
+    String Q_FOL_GET_ALL_FOLLOWEE_MINE_DEF = "SELECT f FROM Follow AS f WHERE f.followee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY f.id DESC";
+    //指定した従業員のフォロワーの従業員を全件idの降順で取得する
+    String Q_FOL_GET_ALL_FOLLOWER_MINE = ENTITY_EMP + ".getAllFollowerMine";
+    String Q_FOL_GET_ALL_FOLLOWER_MINE_DEF = "SELECT f FROM Follow AS f WHERE f.follower = :" + JPQL_PARM_EMPLOYEE + " ORDER BY f.id DESC";
 }
