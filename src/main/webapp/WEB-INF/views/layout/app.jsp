@@ -7,6 +7,7 @@
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="actAuth" value="${ForwardConst.ACT_AUTH.getValue()}" />
+<c:set var="actFol" value="${ForwardConst.ACT_FOL.getValue()}" />
 
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commOut" value="${ForwardConst.CMD_LOGOUT.getValue()}" />
@@ -30,7 +31,11 @@
                     </c:if>
                     <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">日報管理</a>&nbsp;
                 </c:if>
+                <c:if test="${sessionScope.login_employee != null}">
+                    <a href="<c:url value='?action=${actFol}&command=${commIdx}' />">フォロー</a>&nbsp;
+                </c:if>
             </div>
+
             <c:if test="${sessionScope.login_employee != null}">
                 <div id="employee_name">
                     <c:out value="${sessionScope.login_employee.name}" />

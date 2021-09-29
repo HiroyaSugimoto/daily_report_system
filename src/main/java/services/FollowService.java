@@ -48,6 +48,23 @@ public class FollowService extends ServiceBase {
         return FollowConverter.toViewList(follower);
     }
 
+    /**
+     * 指定した従業員のフォローしている従業員数を取得し、返却する
+     * @return フォローの件数
+     */
+    public long countMineFollow(EmployeeView employee) {
+        long followee_count = (long)em.createNamedQuery(JpaConst.Q_FOL_COUNT_MINE, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
+                .getSingleResult();
+
+        return followee_count;
+    }
+
+    /**
+     * 設定されたフォローデータを元に、フォローテーブルに1件フォロー情報を登録する
+     * @param fv
+     * @return
+     */
     public List<String> create(FollowView fv){
         List<String> errors = FollowValidator.validate(fv);
         if(errors.size() == 0) {

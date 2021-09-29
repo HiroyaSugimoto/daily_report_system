@@ -127,6 +127,13 @@ select {
     display: inline-block;
 }
 
+#follow {
+    color: #cccccc;
+    width: 36%;
+    padding-right: 3%;
+    display: inline-block;
+}
+
 #header a {
     color: #eeeeee;
     display: inline-block;
@@ -163,4 +170,22 @@ pre {
 
 h3 {
     font-size: larger;
+}
+
+table#followee_list th{
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#followee_list .followee_code{
+    width: 30%;
+}
+
+table#followee_list .followee_name{
+    width: 40%;
+    padding: 10px 2%;
+}
+
+table#followee_list .followee_action{
+    width: 30%;
 }

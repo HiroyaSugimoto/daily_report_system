@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -29,7 +30,10 @@ import lombok.Setter;
             query = JpaConst.Q_FOL_GET_ALL_FOLLOWEE_MINE_DEF),
     @NamedQuery(
             name = JpaConst.Q_FOL_GET_ALL_FOLLOWER_MINE,
-            query = JpaConst.Q_FOL_GET_ALL_FOLLOWER_MINE_DEF)
+            query = JpaConst.Q_FOL_GET_ALL_FOLLOWER_MINE_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_FOL_COUNT_MINE,
+            query = JpaConst.Q_FOL_COUNT_MINE_DEF)
             })
 
 @Getter
@@ -51,14 +55,14 @@ public class Follow {
      * フォローしている従業員id
      */
     @ManyToOne
-    @Column(name = JpaConst.FOL_COL_FOLLOWEE_ID, nullable = false)
+    @JoinColumn(name = JpaConst.FOL_COL_FOLLOWEE_ID, nullable = false)
     private Employee followee;
 
     /**
      * フォローされている従業員id
      */
     @ManyToOne
-    @Column(name = JpaConst.FOL_COL_FOLLOWER_ID, nullable = false)
+    @JoinColumn(name = JpaConst.FOL_COL_FOLLOWER_ID, nullable = false)
     private Employee follower;
 
     /**
