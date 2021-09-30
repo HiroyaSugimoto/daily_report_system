@@ -122,19 +122,21 @@ public class ReportService extends ServiceBase {
     }
 
     /**
-     * レポートのidから作成者の情報を取得し、EmployeeViewのインスタンスで返却
+     * レポートのidから作成者の情報を取得し、ReportViewのインスタンスで返却
      * @param id
      * @return 取得データのインスタンス
      */
-    public EmployeeView getCreatedEmployee(int id) {
-        EmployeeView ev = new EmployeeView();
+    public ReportView getCreatedEmployee(int id) {
+        ReportView rv = new ReportView();
 
-        ev = em.createNamedQuery(JpaConst.Q_REP_GET_EMPLOYEE_ID, EmployeeView.class)
-                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, ev)
+        rv = em.createNamedQuery(JpaConst.Q_REP_GET_EMPLOYEE_ID, ReportView.class)
+                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, rv)
                 .getSingleResult();
 
-        return ev;
+        return rv;
     }
+
+
 
     /**
      * idを条件にデータを1件取得する

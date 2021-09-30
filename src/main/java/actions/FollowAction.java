@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 
 import actions.views.EmployeeView;
 import actions.views.FollowView;
+import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
@@ -69,22 +70,23 @@ public class FollowAction extends ActionBase {
      */
     public void create() throws ServletException, IOException {
 
-      //CSRF対策 tokenのチェック
-//        if (checkToken()) {
-
       //フォローした日時を設定（DBテーブル用）
       LocalDateTime followedAt = LocalDateTime.now();
 
       //セッションからログイン中の従業員情報を取得
       EmployeeView followerEmp = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
-      //表示中のレポートのクエリパラメータから"id"の値を取得し、Integer型にキャスト
-      String commId = request.getParameter(ForwardConst.CMD_ID.getValue());
-      Integer repId = Integer.parseInt(commId);
+      //表示中のレポートの"id"を取得
+      String commId = getSessionScope(AttributeConst.REP_ID);
+      int repId = Integer.parseInt(commId);
 
-      //パラメータ"id"の値から、レポート作成者の情報を取得
+      //パラメータ"id"の値から、レポート情報を取得
+      ReportView followeeEmpRep = new ReportView();
       ReportService rs = new ReportService();
-      EmployeeView followeeEmp = rs.getCreatedEmployee(repId);
+      followeeEmpRep = rs.findOne(repId);
+
+      EmployeeView followeeEmp = new EmployeeView();
+      followeeEmp = followeeEmpRep.getEmployee();
 
       //フォロー情報を登録
       FollowView fv = new FollowView(
@@ -99,7 +101,7 @@ public class FollowAction extends ActionBase {
       putSessionScope(AttributeConst.FLUSH, MessageConst.I_FOLLOWED.getMessage());
 
       //現在の画面を再表示
-      redirectFollow(ForwardConst.ACT_REP, ForwardConst.FW_REP_SHOW, commId);
+      redirectFollow(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, commId);
 
 //        }
     }

@@ -157,6 +157,10 @@ public class ReportAction extends ActionBase {
 
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
 
+            //リクエストURLからクエリパラメータ"id"を取得する
+            String commId = request.getParameter(ForwardConst.CMD_ID.getValue());
+            putSessionScope(AttributeConst.REP_ID, commId);
+
             //詳細画面を表示
             forward(ForwardConst.FW_REP_SHOW);
         }

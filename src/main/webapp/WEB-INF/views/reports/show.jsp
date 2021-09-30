@@ -49,9 +49,7 @@
             </p>
         </c:if>
         <p>
-            <form method="POST" action="<c:url value='?action=${actFol}&command=${commCrt}' />">
-                <button type="submit">レポートの作成者をフォーローする</button>
-            </form>
+            <a href="<c:url value='?action=${actFol}&command=${commCrt}' />">この従業員をフォローする</a>
         </p>
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>
