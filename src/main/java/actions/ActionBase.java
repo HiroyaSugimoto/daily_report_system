@@ -116,6 +116,25 @@ public abstract class ActionBase {
     }
 
     /**
+     * （フォロー登録時用）URLを構築しリダイレクトを行う
+     */
+    protected void redirectFollow(ForwardConst action, ForwardConst command, String id)
+            throws ServletException, IOException {
+
+        //URLを構築
+        String redirectUrl = request.getContextPath() + "/?action=" + action.getValue();
+        if (command != null) {
+            redirectUrl = redirectUrl + "&command=" + command.getValue();
+        }
+        if (id != null) {
+            redirectUrl = redirectUrl + "&id=" + id;
+        }
+
+        //URLへリダイレクト
+        response.sendRedirect(redirectUrl);
+    }
+
+    /**
      * CSRF対策 token不正の場合はエラー画面を表示
      * @return true: token有効 false: token不正
      * @throws ServletException

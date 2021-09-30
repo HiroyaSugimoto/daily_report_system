@@ -84,6 +84,9 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+    //レポートのidから作成者の情報を取得
+    String Q_REP_GET_EMPLOYEE_ID = ENTITY_REP + ".getEmployeeId";
+    String Q_REP_GET_EMPLOYEE_ID_DEF = "SELECT r FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
 
     //指定した従業員がフォロー中の従業員を全件idの降順で取得する
     String Q_FOL_GET_ALL_FOLLOWEE_MINE = ENTITY_FOL + ".getAllFolloweeMine";
