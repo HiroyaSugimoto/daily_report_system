@@ -16,7 +16,6 @@ import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
-import constants.MessageConst;
 import services.FollowService;
 import services.ReportService;
 
@@ -49,10 +48,10 @@ public class FollowAction extends ActionBase {
 
         //指定されたページ数の一覧画面に表示するフォローデータを取得
         int page = getPage();
-        List<FollowView> followee = service.getMineFolloweePerPage(loginEmployee, page);
+        List<FollowView> followee = service.getMyFolloweePerPage(loginEmployee, page);
 
         //ログイン中の従業員がフォロー中の従業員の件数を取得
-        long myFolloweeCount = service.countMineFollow(loginEmployee);
+        long myFolloweeCount = service.countMyFollowee(loginEmployee);
 
         putRequestScope(AttributeConst.FOLLOWEE, followee); //取得したフォロー情報
         putRequestScope(AttributeConst.FOLLOWEE_COUNT, myFolloweeCount); //ログイン中の従業員がフォローしている数
@@ -80,11 +79,12 @@ public class FollowAction extends ActionBase {
       String commId = getSessionScope(AttributeConst.REP_ID);
       int repId = Integer.parseInt(commId);
 
-      //パラメータ"id"の値から、レポート情報を取得
+      //リクエストURL"id"の値から、レポート情報を取得
       ReportView followeeEmpRep = new ReportView();
       ReportService rs = new ReportService();
       followeeEmpRep = rs.findOne(repId);
 
+      //取得したレポートデータのEmployee_idを使用してフォローする従業員データを取得
       EmployeeView followeeEmp = new EmployeeView();
       followeeEmp = followeeEmpRep.getEmployee();
 
@@ -97,13 +97,15 @@ public class FollowAction extends ActionBase {
 
       service.create(fv);
 
-      //フォロー完了のフラッシュメッセージを表示
-      putSessionScope(AttributeConst.FLUSH, MessageConst.I_FOLLOWED.getMessage());
+      //セッションにフラッシュメッセージが登録されている場合はリクエストスコープに設定する
+      String flush = getSessionScope(AttributeConst.FLUSH);
+      if(flush != null) {
+          putRequestScope(AttributeConst.FLUSH, getSessionScope(AttributeConst.FLUSH));
+          removeSessionScope(AttributeConst.FLUSH);
+      }
 
-      //現在の画面を再表示
       redirectFollow(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, commId);
 
-//        }
     }
 
 }

@@ -22,9 +22,9 @@ public class FollowService extends ServiceBase {
      * @param page ページ数
      * @return 一覧画面に表示するデータリスト
      */
-    public List<FollowView> getMineFolloweePerPage(EmployeeView employee, int page){
+    public List<FollowView> getMyFolloweePerPage(EmployeeView employee, int page){
 
-        List<Follow> followee = em.createNamedQuery(JpaConst.Q_FOL_GET_ALL_FOLLOWEE_MINE, Follow.class)
+        List<Follow> followee = em.createNamedQuery(JpaConst.Q_FOL_GET_ALL_My_FOLLOWEE, Follow.class)
                 .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
                 .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
                 .setMaxResults(JpaConst.ROW_PER_PAGE)
@@ -40,7 +40,7 @@ public class FollowService extends ServiceBase {
      */
     public List<FollowView> getMineFollowerPerPage(EmployeeView employee, int page){
 
-        List<Follow> follower = em.createNamedQuery(JpaConst.Q_FOL_GET_ALL_FOLLOWER_MINE, Follow.class)
+        List<Follow> follower = em.createNamedQuery(JpaConst.Q_FOL_GET_ALL_My_FOLLOWER, Follow.class)
                 .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
                 .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
                 .setMaxResults(JpaConst.ROW_PER_PAGE)
@@ -50,14 +50,43 @@ public class FollowService extends ServiceBase {
 
     /**
      * 指定した従業員のフォローしている従業員数を取得し、返却する
+     * @param employee 従業員
      * @return フォローの件数
      */
-    public long countMineFollow(EmployeeView employee) {
-        long followee_count = (long)em.createNamedQuery(JpaConst.Q_FOL_COUNT_MINE, Long.class)
+    public long countMyFollowee(EmployeeView employee) {
+        long followee_count = (long)em.createNamedQuery(JpaConst.Q_FOL_My_FOLLOWEE_COUNT, Long.class)
                 .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
                 .getSingleResult();
 
         return followee_count;
+    }
+
+    /**
+     * 指定した従業員をフォローしている従業員数を取得し、返却する
+     * @param follower 従業員
+     * @return フォローの件数
+     */
+    public long countMyFollower(FollowView follower) {
+        long follower_count = (long)em.createNamedQuery(JpaConst.Q_FOL_My_FOLLOWER_COUNT, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, FollowConverter.toModel(follower))
+                .getSingleResult();
+
+        return follower_count;
+    }
+
+    /**
+     * 指定した従業員が、指定した対象の従業員をフォローしているか確認し、結果を返却する
+     * @param followerEmp フォローする従業員
+     * @param followeeEmp フォローされる従業員
+     * @return (結果 = 0:フォローしていない, 結果 > 1:フォローしている）
+     */
+    public long alreadyFollowCheck(EmployeeView followerEmp, EmployeeView followeeEmp) {
+        long follow_check = (long)em.createNamedQuery(JpaConst.Q_FOL_FOLLOEE_CHECK, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_FOLLOWEE, EmployeeConverter.toModel(followeeEmp))
+                .setParameter(JpaConst.JPQL_PARM_FOLLOWER, EmployeeConverter.toModel(followerEmp))
+                .getSingleResult();
+
+        return follow_check;
     }
 
     /**

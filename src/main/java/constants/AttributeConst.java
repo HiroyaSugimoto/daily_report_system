@@ -22,6 +22,11 @@ public enum AttributeConst {
     //ログイン画面
     LOGIN_ERR("loginError"),
 
+    //フォロー追加
+    ADD_FOLLOWEE("addFollowee"),
+
+    //フォロー解除
+
     //従業員管理
     EMPLOYEE("employee"),
     EMPLOYEES("employees"),
@@ -53,7 +58,8 @@ public enum AttributeConst {
     FOLLOWEE("followee"),
     FOLLOWER("follower"),
     FOLLOWEE_COUNT("followee_count"),
-    FOLLOWER_COUNT("follower_count");
+    FOLLOWER_COUNT("follower_count"),
+    FOLLOWEE_CHECK("followee_check");
 
     private final String text;
     private final Integer i;

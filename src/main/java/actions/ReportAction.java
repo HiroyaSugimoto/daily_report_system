@@ -12,6 +12,7 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.FollowService;
 import services.ReportService;
 
 /**
@@ -160,6 +161,26 @@ public class ReportAction extends ActionBase {
             //リクエストURLからクエリパラメータ"id"を取得する
             String commId = request.getParameter(ForwardConst.CMD_ID.getValue());
             putSessionScope(AttributeConst.REP_ID, commId);
+
+            //表示中のレポートの"id"をint型にキャスト
+            int repId = Integer.parseInt(commId);
+
+            //リクエストURL"id"の値から、レポート情報を取得
+            ReportView followeeEmpRep = new ReportView();
+            ReportService rs = new ReportService();
+            followeeEmpRep = rs.findOne(repId);
+
+            //取得したレポートデータのEmployee_idを使用してフォローする従業員データを取得
+            EmployeeView followeeEmp = new EmployeeView();
+            followeeEmp = followeeEmpRep.getEmployee();
+
+            //セッションからログイン中の従業員情報を取得
+            EmployeeView followerEmp = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+            //
+            FollowService fs = new FollowService();
+            long followeeCheck = fs.alreadyFollowCheck(followerEmp, followeeEmp);
+            putRequestScope(AttributeConst.FOLLOWEE_CHECK, followeeCheck);
 
             //詳細画面を表示
             forward(ForwardConst.FW_REP_SHOW);

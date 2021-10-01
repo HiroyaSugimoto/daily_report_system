@@ -9,6 +9,7 @@
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
+
     <h2>フォロー 一覧</h2>
     <table id="follow_list">
         <tbody>
@@ -17,11 +18,11 @@
                 <th class="followee_name">氏名</th>
                 <th class="followee_action">レポート一覧</th>
             </tr>
-            <c:forEach var="followee" items="${follows}" varStatus="status">
+            <c:forEach var="followee" items="${followee}" varStatus="status">
 
                 <tr class="raw${status.count % 2}">
-                    <td class="followee_code"><c:out value="${followee.employee.code}" /></td>
-                    <td class="followee_name"><c:out value="${followee.employee.name}" /></td>
+                    <td class="followee_code"><c:out value="${followee.followee.code}" /></td>
+                    <td class="followee_name"><c:out value="${followee.followee.name}" /></td>
                     <td class="follow_action"><a href="<c:url value='?action=${actRep}&command=${commIdx}' />">レポート一覧</a></td>
                 </tr>
             </c:forEach>

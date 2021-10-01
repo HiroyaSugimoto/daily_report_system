@@ -48,9 +48,24 @@
                 <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>
             </p>
         </c:if>
-        <p>
-            <a href="<c:url value='?action=${actFol}&command=${commCrt}' />">この従業員をフォローする</a>
-        </p>
+
+        <c:choose>
+            <c:when test="${followee_check == 0}">
+                <p>
+                    <a href="<c:url value='?action=${actFol}&command=${commCrt}' />">この従業員をフォローする</a>
+                </p>
+            </c:when>
+
+            <c:when test="${followee_check > 1}">
+                <p>
+                    フォローを解除する
+                </p>
+            </c:when>
+            <c:otherwise>
+            </c:otherwise>
+
+        </c:choose>
+
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>
         </p>

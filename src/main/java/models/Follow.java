@@ -26,14 +26,23 @@ import lombok.Setter;
 @Table(name = JpaConst.TABLE_FOL)
 @NamedQueries({
     @NamedQuery(
-            name = JpaConst.Q_FOL_GET_ALL_FOLLOWEE_MINE,
-            query = JpaConst.Q_FOL_GET_ALL_FOLLOWEE_MINE_DEF),
+            name = JpaConst.Q_FOL_GET_ALL,
+            query = JpaConst.Q_FOL_GET_ALL_DEF),
     @NamedQuery(
-            name = JpaConst.Q_FOL_GET_ALL_FOLLOWER_MINE,
-            query = JpaConst.Q_FOL_GET_ALL_FOLLOWER_MINE_DEF),
+            name = JpaConst.Q_FOL_GET_ALL_My_FOLLOWEE,
+            query = JpaConst.Q_FOL_GET_ALL_My_FOLLOWEE_DEF),
     @NamedQuery(
-            name = JpaConst.Q_FOL_COUNT_MINE,
-            query = JpaConst.Q_FOL_COUNT_MINE_DEF)
+            name = JpaConst.Q_FOL_GET_ALL_My_FOLLOWER,
+            query = JpaConst.Q_FOL_GET_ALL_My_FOLLOWER_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_FOL_My_FOLLOWEE_COUNT,
+            query = JpaConst.Q_FOL_My_FOLLOWEE_COUNT_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_FOL_My_FOLLOWER_COUNT,
+            query = JpaConst.Q_FOL_My_FOLLOWER_COUNT_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_FOL_FOLLOEE_CHECK,
+            query = JpaConst.Q_FOL_FOLLOEE_CHECK_DEF)
             })
 
 @Getter

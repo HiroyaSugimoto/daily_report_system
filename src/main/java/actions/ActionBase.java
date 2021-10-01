@@ -116,7 +116,7 @@ public abstract class ActionBase {
     }
 
     /**
-     * （フォロー登録時用）URLを構築しリダイレクトを行う
+     * （フォロー機能用に追加）URLを構築しリダイレクトを行う
      */
     protected void redirectFollow(ForwardConst action, ForwardConst command, String id)
             throws ServletException, IOException {
