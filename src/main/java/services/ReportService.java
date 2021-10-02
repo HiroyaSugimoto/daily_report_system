@@ -123,7 +123,7 @@ public class ReportService extends ServiceBase {
 
     /**
      * レポートのidから作成者の情報を取得し、ReportViewのインスタンスで返却
-     * @param id
+     * @param id レポートのid
      * @return 取得データのインスタンス
      */
     public ReportView getCreatedEmployee(int id) {

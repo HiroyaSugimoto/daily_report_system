@@ -177,9 +177,16 @@ public class ReportAction extends ActionBase {
             //セッションからログイン中の従業員情報を取得
             EmployeeView followerEmp = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
-            //
+            //対象の従業員を既にフォローしているかどうかテーブルのデータをカウントする
+            //0:フォローしていない / 1:フォローしている
             FollowService fs = new FollowService();
             long followeeCheck = fs.alreadyFollowCheck(followerEmp, followeeEmp);
+
+            //表示しているレポートの作成者が自分自身の場合、followCheckに2を代入する
+            if(followerEmp.getId() == followeeEmp.getId()) {
+                followeeCheck = 2;
+            }
+
             putRequestScope(AttributeConst.FOLLOWEE_CHECK, followeeCheck);
 
             //詳細画面を表示

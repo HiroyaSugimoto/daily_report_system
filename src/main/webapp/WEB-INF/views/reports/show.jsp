@@ -56,13 +56,13 @@
                 </p>
             </c:when>
 
-            <c:when test="${followee_check > 1}">
+            <c:when test="${followee_check == 1}">
                 <p>
                     フォローを解除する
                 </p>
             </c:when>
-            <c:otherwise>
-            </c:otherwise>
+            <c:when test="${followee_check == 2}">
+            </c:when>
 
         </c:choose>
 

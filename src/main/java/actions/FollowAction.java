@@ -107,5 +107,4 @@ public class FollowAction extends ActionBase {
       redirectFollow(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, commId);
 
     }
-
 }
