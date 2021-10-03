@@ -59,6 +59,7 @@ public interface JpaConst {
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
     String JPQL_PARM_FOLLOWEE = "followee"; //フォローされる従業員
     String JPQL_PARM_FOLLOWER = "follower"; //フォローする従業員
+    String JPQL_PARM_ID = "id";
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
@@ -97,15 +98,18 @@ public interface JpaConst {
     String Q_FOL_GET_ALL_My_FOLLOWEE = ENTITY_FOL + ".getAllMyFollowee";
     String Q_FOL_GET_ALL_My_FOLLOWEE_DEF = "SELECT f FROM Follow AS f WHERE f.follower = :" + JPQL_PARM_EMPLOYEE + " ORDER BY f.id DESC";
     //指定した従業員のフォロワーの従業員を全件idの降順で取得する
-    String Q_FOL_GET_ALL_My_FOLLOWER = ENTITY_FOL + ".getAllFollowerMine";
+    String Q_FOL_GET_ALL_My_FOLLOWER = ENTITY_FOL + ".getAllMyFollower";
     String Q_FOL_GET_ALL_My_FOLLOWER_DEF = "SELECT f FROM Follow AS f WHERE f.followee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY f.id DESC";
     //指定した従業員がフォロー中の従業員の件数を取得する
     String Q_FOL_My_FOLLOWEE_COUNT = ENTITY_FOL + ".countMyFollowee";
     String Q_FOL_My_FOLLOWEE_COUNT_DEF = "SELECT COUNT(f) FROM Follow AS f WHERE f.follower = :" + JPQL_PARM_EMPLOYEE;
-    //指定したidの従業員をfollowee_idから取得する
+    //指定した従業員をフォローしている従業員を取得する
     String Q_FOL_My_FOLLOWER_COUNT = ENTITY_FOL + ".countMyFollower";
     String Q_FOL_My_FOLLOWER_COUNT_DEF = "SELECT COUNT(f) FROM Follow AS f WHERE f.followee = :" + JPQL_PARM_EMPLOYEE;
-    //指定した従業員が、指定した対象をフォローしているか確認する
+    //指定した従業員が、指定した対象をフォローしているかカウントする
     String Q_FOL_FOLLOEE_CHECK = ENTITY_FOL + ".countFolloweeCheck";
     String Q_FOL_FOLLOEE_CHECK_DEF = "SELECT COUNT(f) FROM Follow AS f WHERE f.followee = :" + JPQL_PARM_FOLLOWEE + " AND f.follower = :" + JPQL_PARM_FOLLOWER;
+    //指定した従業員の指定したフォロー情報を1件取得する
+    String Q_FOL_GET_ONE_FOLLOWEE = ENTITY_FOL + ".selectOneFollowee";
+    String Q_FOL_GET_ONE_FOLLOWEE_DEF = "SELECT f FROM Follow AS f WHERE f.followee = :" + JPQL_PARM_FOLLOWEE + " AND f.follower = :" + JPQL_PARM_FOLLOWER;
 }

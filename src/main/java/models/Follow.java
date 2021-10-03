@@ -42,7 +42,10 @@ import lombok.Setter;
             query = JpaConst.Q_FOL_My_FOLLOWER_COUNT_DEF),
     @NamedQuery(
             name = JpaConst.Q_FOL_FOLLOEE_CHECK,
-            query = JpaConst.Q_FOL_FOLLOEE_CHECK_DEF)
+            query = JpaConst.Q_FOL_FOLLOEE_CHECK_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_FOL_GET_ONE_FOLLOWEE,
+            query = JpaConst.Q_FOL_GET_ONE_FOLLOWEE_DEF)
             })
 
 @Getter

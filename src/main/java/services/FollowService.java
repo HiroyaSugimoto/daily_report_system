@@ -105,10 +105,62 @@ public class FollowService extends ServiceBase {
         return errors;
     }
 
+    /**
+     * 設定されたfolloweeとfollowerの情報を元に、1件のフォロー情報のidを取得
+     * @param follower フォローしている従業員
+     * @param followee フォローされている従業員
+     * @return フォローデータのid
+     */
+    public int getOneFolloweeId(EmployeeView follower, EmployeeView followee) {
+        Follow followeeData = em.createNamedQuery(JpaConst.Q_FOL_GET_ONE_FOLLOWEE, Follow.class)
+                .setParameter(JpaConst.JPQL_PARM_FOLLOWER, EmployeeConverter.toModel(follower))
+                .setParameter(JpaConst.JPQL_PARM_FOLLOWEE, EmployeeConverter.toModel(followee))
+                .getSingleResult();
+
+        int followeeDataId = followeeData.getId();
+        return followeeDataId;
+    }
+
+    /**
+     * 設定されたフォローデータのidを情報を元に、該当するフォローデータを1件削除する
+     * @param id 削除するフォローデータのid
+     */
+    public void deleteFollowData(int id) {
+        Follow followData = findOneInternal(id);
+
+        deleteFollow(followData);
+    }
+
+    /**
+     * idを条件にデータを1件取得し、Followのインスタンスで返却する
+     * @param id
+     * @return 取得データのインスタンス
+     */
+    private Follow findOneInternal(int id) {
+        Follow f = em.find(Follow.class, id);
+
+        return f;
+    }
+
+    /**
+     * フォローデータを1件登録する
+     * @param fv フォローデータ
+     * @return 登録結果(成功:true 失敗:false)
+     */
     private void createFollow(FollowView fv) {
 
         em.getTransaction().begin();
         em.persist(FollowConverter.toModel(fv));
+        em.getTransaction().commit();
+    }
+
+    /**
+     * フォローデータの削除を行う
+     */
+    private void deleteFollow(Follow f) {
+
+        em.getTransaction().begin();
+        em.remove(f);
         em.getTransaction().commit();
     }
 

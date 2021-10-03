@@ -9,6 +9,7 @@
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
+<c:set var="commDel" value="${ForwardConst.CMD_DESTROY.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -58,7 +59,7 @@
 
             <c:when test="${followee_check == 1}">
                 <p>
-                    フォローを解除する
+                    <a href="<c:url value='?action=${actFol}&command=${commDel}' />">フォローを解除する</a>
                 </p>
             </c:when>
             <c:when test="${followee_check == 2}">

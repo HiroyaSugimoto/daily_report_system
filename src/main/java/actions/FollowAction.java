@@ -107,4 +107,37 @@ public class FollowAction extends ActionBase {
       redirectFollow(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, commId);
 
     }
+
+    /**
+     * フォローを解除する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void destroy() throws ServletException, IOException {
+
+      //セッションからログイン中の従業員情報を取得
+        EmployeeView followerEmp = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+        //表示中のレポートの"id"を取得
+        String commId = getSessionScope(AttributeConst.REP_ID);
+        int repId = Integer.parseInt(commId);
+
+        //リクエストURL"id"の値から、レポート情報を取得
+        ReportView followeeEmpRep = new ReportView();
+        ReportService rs = new ReportService();
+        followeeEmpRep = rs.findOne(repId);
+
+        //取得したレポートデータのEmployee_idを使用してフォローする従業員データを取得
+        EmployeeView followeeEmp = new EmployeeView();
+        followeeEmp = followeeEmpRep.getEmployee();
+
+        //フォローしている従業員とフォローされてる従業員の情報を元に、1件のフォローデータidを取得
+        int followId = service.getOneFolloweeId(followerEmp, followeeEmp);
+
+        //フォローのテーブルからデータを1件削除
+        service.deleteFollowData(followId);
+
+        //レポート詳細ページを再表示
+        redirectFollow(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, commId);
+    }
 }
