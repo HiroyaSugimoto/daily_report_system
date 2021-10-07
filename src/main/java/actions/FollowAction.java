@@ -16,12 +16,15 @@ import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
+import services.EmployeeService;
 import services.FollowService;
 import services.ReportService;
 
 public class FollowAction extends ActionBase {
 
     private FollowService service;
+    private EmployeeService es;
+    private ReportService rs;
 
     /**
      * メソッドを実行する
@@ -30,6 +33,8 @@ public class FollowAction extends ActionBase {
     public void process() throws ServletException, IOException {
 
         service = new FollowService();
+        es = new EmployeeService();
+        rs = new ReportService();
 
         //メソッドを実行
         invoke();
@@ -60,6 +65,48 @@ public class FollowAction extends ActionBase {
 
         //フォローの一覧画面を表示
         forward(ForwardConst.FW_FOL_INDEX);
+    }
+
+
+    /**
+     * フォローしている特定の従業員のレポート一覧を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void followeeIndex() throws ServletException, IOException {
+
+        //idを条件にフォロー対象者の従業員情報を取得
+        int followeeEmpId = Integer.parseInt(getRequestParam(AttributeConst.EMP_ID));
+        EmployeeView followeeEmp = es.findOne(followeeEmpId);
+
+        //フォロー対象の従業員が作成した日報データを指定されたページ数の一覧画面に表示する分取得する
+        int page = getPage();
+        List<ReportView> reports = rs.getMinePerPage(followeeEmp, page);
+
+        //フォロー対象の従業員が作成した日報データの件数を取得
+        long followeeRepCount = rs.countAllMine(followeeEmp);
+
+        putRequestScope(AttributeConst.REPORTS, reports); //取得した日報データ
+        putRequestScope(AttributeConst.REP_COUNT, followeeRepCount); //全ての日報データの件数
+        putRequestScope(AttributeConst.PAGE, page); //ページ数
+        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数
+        putRequestScope(AttributeConst.EMPLOYEE, followeeEmp); //取得した従業員情報
+
+        //セッションからログイン中の従業員情報を取得
+        EmployeeView followerEmp = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+        //ログイン中の従業員が対象の従業員をフォローしているか確認
+        long followCheck = service.alreadyFollowCheck(followerEmp, followeeEmp);
+
+        if(followCheck == 1) {
+            //フォローしていたら一覧画面を表示
+            forward(ForwardConst.FW_FOL_FOLLOWEE_INDEX);
+        } else {
+            //フォローしていなかったらエラー画面を表示
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+            return;
+        }
+
     }
 
     /**
@@ -96,13 +143,6 @@ public class FollowAction extends ActionBase {
               followedAt);
 
       service.create(fv);
-
-      //セッションにフラッシュメッセージが登録されている場合はリクエストスコープに設定する
-      String flush = getSessionScope(AttributeConst.FLUSH);
-      if(flush != null) {
-          putRequestScope(AttributeConst.FLUSH, getSessionScope(AttributeConst.FLUSH));
-          removeSessionScope(AttributeConst.FLUSH);
-      }
 
       redirectFollow(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, commId);
 

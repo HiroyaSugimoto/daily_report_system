@@ -68,7 +68,10 @@
         </c:choose>
 
         <p>
-            <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>
+            <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">日報一覧</a>
+        </p>
+        <p>
+            <a href="<c:url value='?action=${actFol}&command=${commIdx}' />">フォローリスト</a>
         </p>
     </c:param>
 </c:import>

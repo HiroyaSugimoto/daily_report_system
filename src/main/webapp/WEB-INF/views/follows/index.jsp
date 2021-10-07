@@ -6,11 +6,12 @@
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="actFol" value="${ForwardConst.ACT_FOL.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
+<c:set var="commFolIdx" value="${ForwardConst.CMD_FOLLOWEE_INDEX.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
 
-    <h2>フォロー 一覧</h2>
+    <h2>フォローリスト</h2>
     <table id="follow_list">
         <tbody>
             <tr>
@@ -23,8 +24,9 @@
                 <tr class="raw${status.count % 2}">
                     <td class="followee_code"><c:out value="${followee.followee.code}" /></td>
                     <td class="followee_name"><c:out value="${followee.followee.name}" /></td>
-                    <td class="follow_action"><a href="<c:url value='?action=${actRep}&command=${commIdx}' />">レポート一覧</a></td>
+                    <td class="follow_action"><a href="<c:url value='?action=${actFol}&command=${commFolIdx}&id=${followee.followee.id}' />">この従業員のレポート一覧</a></td>
                 </tr>
+
             </c:forEach>
         </tbody>
     </table>
