@@ -7,15 +7,14 @@ This app manages employee information and daily reports.
 ### "Employee Management": </br>
 - Register, update, and remove employee information.
 - Duplicate employee numbers cannot be registered.  </br>
-![DRS_illustration1](https://user-images.githubusercontent.com/89298806/136744844-181db1a6-6fc2-4433-9c25-078c5d4e0506.png)</br>
-
 Note: This feature can only be used by employees whose authority is "admin".</br>
+![DRS_illustration1](https://user-images.githubusercontent.com/89298806/136745530-8b71d7ca-6dd0-4a80-a9f9-797231458c33.png)</br>
 
 ### "Daily Report Management": </br>
 - Daily report registration and update.
 - The registered daily report can be viewed by everyone regardless of authority.</br>
   but, edit and update can only that report author. </br>
-![DRS_illustration2](https://user-images.githubusercontent.com/89298806/136744845-7c23b2f8-f9a6-40f8-a3b5-111ccc58786a.png)</br>
+![DRS_illustration2](https://user-images.githubusercontent.com/89298806/136745532-cd6b5d27-c499-4011-aaf1-b1e473481275.png)</br>
 
 ### "Login": </br>
 - Login using the registered employee's "code" and "password".
