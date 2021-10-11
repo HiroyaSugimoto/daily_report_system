@@ -23,6 +23,13 @@ Note: This feature can only be used by employees whose authority is "admin".</br
 - Employees can "Follow" each other.
 - You can list the reports written by "Follow" employees.
 
+## ![DailyReportSystem_logo5](https://user-images.githubusercontent.com/89298806/136747621-da69c83f-fd39-4ffb-92e6-28cde8af2f10.png) </br>
+### Site Map </br>
+<img width="1042" alt="スクリーンショット 2021-10-11 16 09 25" src="https://user-images.githubusercontent.com/89298806/136747670-fbad0ae9-0a33-4917-ad4e-fcf7b6a94d22.png"> </br>
+
+### ER Diagram </br>
+<img width="538" alt="スクリーンショット 2021-10-11 16 08 40" src="https://user-images.githubusercontent.com/89298806/136747666-a2fd682f-a9c3-41c2-ad6a-ed72cba5303c.png"> </br>
+
 ## ![DailyReportSystem_logo3](https://user-images.githubusercontent.com/89298806/136723872-5cfbb9b8-9145-4a64-a97b-7c7493bda120.png)</br>
 
 
