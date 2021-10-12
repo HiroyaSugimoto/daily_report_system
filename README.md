@@ -1,4 +1,4 @@
-# ![DailyReportSystem_Titlelogo1](https://user-images.githubusercontent.com/89298806/136723786-1ac6a4a8-32a6-4677-a1f3-db414d535411.png)</br>
+# ![DailyReportSystem_Titlelogo1](https://user-images.githubusercontent.com/89298806/136953812-524dcf32-f6a2-4e05-b48c-5febbbb04521.png)</br>
 This app manages employee information and daily reports.
 
 ## ![DailyReportSystem_logo4](https://user-images.githubusercontent.com/89298806/136723873-67b6efde-c576-44dd-9679-b1d74d5183d3.png)</br>
