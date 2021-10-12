@@ -21,15 +21,25 @@ Note: This feature can only be used by employees whose authority is "admin".</br
   but, edit and update can only that report author. </br>
 ![DRS_illustration2](https://user-images.githubusercontent.com/89298806/136745532-cd6b5d27-c499-4011-aaf1-b1e473481275.png)</br>
 
-### "Login": </br>
-- Login using the registered employee's "code" and "password".
-
 ### "Follow": </br>
 - Employees can "Follow" each other.
 - You can list the reports written by "Follow" employees.
 
+## ![DailyReportSystem_logo6](https://user-images.githubusercontent.com/89298806/136979198-961804fb-2595-42ed-8e04-c6645bfa097a.png) </br>
+Use Maven, Tomcat and MySQL. 
+![DRS_illustration3](https://user-images.githubusercontent.com/89298806/136979207-accdeda7-1704-41be-bd5c-249c66afe578.png) </br>
+
 ## ![DailyReportSystem_logo5](https://user-images.githubusercontent.com/89298806/136747621-da69c83f-fd39-4ffb-92e6-28cde8af2f10.png) </br>
+### "Security" </br>
+- Concatenate the pepper string to the entered password and hash it with "SHA256". </br>
+- The pepper string is defined in the "application.properties" file. </br>
+Note: The above file has been added to ".gitignore" and is not subject to Git management.
 
+### "Login": </br>
+- The object of employee information is saved in the session scope at login. </br>
+- Get information from the session to determine which employee is login. </br>
 
-## ![DailyReportSystem_logo3](https://user-images.githubusercontent.com/89298806/136723872-5cfbb9b8-9145-4a64-a97b-7c7493bda120.png)</br>
+### "Admin Privileges": </br>
+- To use each action of the "EmployeeAction" class, an employee with "admin" permission must be registered in the DB. </br>
+![DRS_illustration4](https://user-images.githubusercontent.com/89298806/136979211-7c33eb89-cf79-49f6-ae6d-26c8c1c180fb.png) </br>
 
