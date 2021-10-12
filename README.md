@@ -1,7 +1,12 @@
 # ![DailyReportSystem_Titlelogo1](https://user-images.githubusercontent.com/89298806/136723786-1ac6a4a8-32a6-4677-a1f3-db414d535411.png)</br>
 This app manages employee information and daily reports.
 
-
+## ![DailyReportSystem_logo4](https://user-images.githubusercontent.com/89298806/136723873-67b6efde-c576-44dd-9679-b1d74d5183d3.png)</br>
+- Java11
+- Eclipse 2020-12(4.18.0)
+- Maven(3.63)
+- Tomcat9
+- MySQL(8.0.25)
 
 ## ![DailyReportSystem_logo2](https://user-images.githubusercontent.com/89298806/136723870-0e177ba5-2cdc-4724-81a0-af4196dc14b2.png)</br>
 ### "Employee Management": </br>
@@ -28,10 +33,3 @@ Note: This feature can only be used by employees whose authority is "admin".</br
 
 ## ![DailyReportSystem_logo3](https://user-images.githubusercontent.com/89298806/136723872-5cfbb9b8-9145-4a64-a97b-7c7493bda120.png)</br>
 
-
-## ![DailyReportSystem_logo4](https://user-images.githubusercontent.com/89298806/136723873-67b6efde-c576-44dd-9679-b1d74d5183d3.png)</br>
-- Java11
-- Eclipse 2020-12(4.18.0)
-- Maven(3.63)
-- Tomcat9
-- MySQL(8.0.25)
