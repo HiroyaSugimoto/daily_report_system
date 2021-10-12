@@ -1,4 +1,4 @@
-# ![DailyReportSystem_Titlelogo1](https://user-images.githubusercontent.com/89298806/136953812-524dcf32-f6a2-4e05-b48c-5febbbb04521.png)</br>
+# ![DailyReportSystem_Titlelogo1](https://user-images.githubusercontent.com/89298806/136986428-52781547-1132-4f7e-88c1-aee58c26bc2f.png)</br>
 This app manages employee information and daily reports.
 
 ## ![DailyReportSystem_logo4](https://user-images.githubusercontent.com/89298806/136723873-67b6efde-c576-44dd-9679-b1d74d5183d3.png)</br>
@@ -43,3 +43,5 @@ Note: The above file has been added to ".gitignore" and is not subject to Git ma
 - To use each action of the "EmployeeAction" class, an employee with "admin" permission must be registered in the DB. </br>
 ![DRS_illustration4](https://user-images.githubusercontent.com/89298806/136979211-7c33eb89-cf79-49f6-ae6d-26c8c1c180fb.png) </br>
 
+## ![DailyReportSystem_logo7](https://user-images.githubusercontent.com/89298806/136986423-b0ea3850-abfd-4c89-8cfb-aade42dd51b5.png) </br>
+This application was created based on the "Tech Academy" curriculum, with only the "Follow" feature added individually. </br>
