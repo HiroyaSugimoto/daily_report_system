@@ -30,7 +30,8 @@ Note: This feature can only be used by employees whose authority is "admin".</br
 
 
 ## ![DailyReportSystem_logo4](https://user-images.githubusercontent.com/89298806/136723873-67b6efde-c576-44dd-9679-b1d74d5183d3.png)</br>
-eclipse_2020_12</br>
-Java(Maven Project)</br>
-
-
+- Java11
+- Eclipse 2020-12(4.18.0)
+- Maven(3.63)
+- Tomcat9
+- MySQL(8.0.25)
