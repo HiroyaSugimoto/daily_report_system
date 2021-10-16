@@ -30,7 +30,7 @@ Note: This feature can only be used by employees whose authority is "admin".</br
 ![DRS_illustration3](https://user-images.githubusercontent.com/89298806/136979207-accdeda7-1704-41be-bd5c-249c66afe578.png)</br>
 Use Maven, Tomcat and MySQL. </br>
 
-## Usage
+## ![DailyReportSystem_logo3](https://user-images.githubusercontent.com/89298806/137586477-9bb92aed-dc94-411d-a3d1-a2ec8cb7a846.png) </br>
 
 1. Deploy the application. </br>
 
