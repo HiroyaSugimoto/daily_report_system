@@ -40,7 +40,7 @@ Use Maven, Tomcat and MySQL. </br>
 - /daily_report_system/src/main/resources/application.properties </br>
 
 *What to enter:* </br>
- -pepper = 6Ab3mtmG </br>
+- pepper = 6Ab3mtmG </br>
 
 3. Display the login screen from the following URL. </br>
 - http: // localhost: 8080 / daily_report_system / </br>
