@@ -36,18 +36,19 @@ Use Maven, Tomcat and MySQL. </br>
 
 2. Create a file called "application.properties" in the following location, enter the following statement and save it. </br>
 
-*Location:* </br>
-- /daily_report_system/src/main/resources/application.properties </br>
+*Location*: </br>
+- /daily_report_system/src/main/resources/application.properties　</br>
 
-*What to enter:* </br>
+*What to enter*: </br>
 - pepper = 6Ab3mtmG </br>
 
+
 3. Display the login screen from the following URL. </br>
-- http: // localhost: 8080 / daily_report_system / </br>
+- http://localhost:8080/daily_report_system/</br>
 
 4. In MySQL, run the following syntax to register the administrator's employee data in the employee table. </br>
 - USE daily_report_system;
-- INSERT INTO employees (id, code, name, password, admin_flag, created_at, updated_at, delete_flag) VALUES (null, 5, '管理者', SHA2('pass6Ab3mtmG', 256) , 1, NOW(), NOW(), 0);
+- INSERT INTO employees (id, code, name, password, admin_flag, created_at, updated_at, delete_flag) VALUES (null, 1, '管理者', SHA2('pass6Ab3mtmG', 256) , 1, NOW(), NOW(), 0);
 - COMMIT;
 
 5. On the login screen, you can log in with the created admin account by entering the following code and password. </br>
